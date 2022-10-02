@@ -33,7 +33,65 @@ pipeline {
           sh 'docker push syhassan01/samplejavaapp:$BUILD_NUMBER'
         }
       }
-    }	    
-        
+    }
+    stage('DEV') {
+	   steps {
+		echo "HASSAN"
+           }
+           post {
+                unstable {
+                    echo "The current build $BUILD_NUMBER is unstable"
+                }
+		aborted  {
+                    echo "The current build $BUILD_NUMBER is aborted."
+                }
+		failure  {
+                    echo "The current build $BUILD_NUMBER is failed."
+                }
+		success {
+                    echo "The current build $BUILD_NUMBER is succeeded."
+                }  
+            } 		   
+	} 	   
+    stage('UAT') {
+	   steps {
+		echo "HASSAN"
+           }
+           post {
+                unstable {
+                    echo "The current build $BUILD_NUMBER is unstable"
+                }
+		aborted  {
+                    echo "The current build $BUILD_NUMBER is aborted."
+                }
+		failure  {
+                    echo "The current build $BUILD_NUMBER is failed."
+                }
+		success {
+                    echo "The current build $BUILD_NUMBER is succeeded."
+                }  
+            } 		   
+	} 			   
+    stage('PROD') {
+	   steps {
+		echo "HASSAN"
+           }
+           post {
+                unstable {
+                    echo "The current build $BUILD_NUMBER is unstable"
+                }
+		aborted  {
+                    echo "The current build $BUILD_NUMBER is aborted."
+                }
+		failure  {
+                    echo "The current build $BUILD_NUMBER is failed."
+                }
+		success {
+                    echo "The current build $BUILD_NUMBER is succeeded."
+                }  
+            } 		   
+	} 	
+
+           
     }
 }
