@@ -29,7 +29,7 @@ pipeline {
 	    
     stage('Docker Push') {
 	   steps {
-		sh 'docker login -u syhassan01 -p $DOCKER_HUB_PWD --password-stdin'   
+		sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'   
 		sh 'docker push syhassan01/samplejavaapp:$BUILD_NUMBER .'
            }
         }   	    
