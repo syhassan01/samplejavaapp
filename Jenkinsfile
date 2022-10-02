@@ -10,11 +10,18 @@ pipeline {
                 git branch: 'master', url: 'https://github.com/syhassan01/samplejavaapp.git'
            }
         }  
-	 stage('Execute Maven') {
+    stage('Execute Maven') {
 	   steps {
                 sh 'mvn package'
            }
-        }     
+        }    
+    stage('Docker Build') {
+	   steps {
+                sh 'cd $WORKSPACE'
+		sh 'docker build -f Dockerfile -t syhassan01/samplejavaapp:$BUILD_NUMBER .'
+           }
+        }    
+	    
         
     }
 }
