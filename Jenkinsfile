@@ -29,7 +29,8 @@ pipeline {
 	    
     stage('Docker Push') {
 	   steps {
-		sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'   
+		withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
+        	sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
 		sh 'docker push syhassan01/samplejavaapp:$BUILD_NUMBER .'
            }
         }   	    
