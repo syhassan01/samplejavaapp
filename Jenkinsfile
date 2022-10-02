@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent Docker_hassan
     tools { 
         maven 'maven3.8' 
         jdk 'java8' 
