@@ -23,7 +23,7 @@ pipeline {
         }   
     stage('Docker Push') {
 	   steps {
-		sh 'docker login -u syhassan01 -p $DOCKER_HUB_PWD'
+		sh 'docker login -u syhassan01 -p $DOCKER_HUB_PWD '
 		sh 'docker push syhassan01/samplejavaapp:$BUILD_NUMBER'
            }
         }   	    
