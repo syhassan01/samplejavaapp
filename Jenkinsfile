@@ -26,17 +26,14 @@ pipeline {
 		input "Deploy to Dev?"
            }
         }  	    
-	    
     stage('Docker Push') {
-	   steps {
-		withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
+          steps {
+      	        withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
         	sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
-		sh 'docker push syhassan01/samplejavaapp:$BUILD_NUMBER .'
-           }
-        }   	    
-	    
-	    
-	    
+          sh 'docker push syhassan01/samplejavaapp:$BUILD_NUMBER'
+        }
+      }
+    }	    
         
     }
 }
